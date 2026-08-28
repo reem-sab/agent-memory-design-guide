@@ -1,5 +1,8 @@
 # Agent Memory Design Guide
 
+[![Lint](https://github.com/reem-sab/agent-memory-design-guide/actions/workflows/lint.yml/badge.svg)](https://github.com/reem-sab/agent-memory-design-guide/actions/workflows/lint.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 Persistent memory turns an agent that resets every session into one that
 carries facts, decisions, and context forward. That capability is only as
 good as the structure behind it: what to write, how to organize it, and
@@ -13,7 +16,27 @@ sessions of the same agent read that storage back and act on it.
 
 Six practices make up the rest of this page. Each stands on its own, but
 they reinforce each other: namespacing makes gating easier, gating makes
-forgetting easier, and a documented scheme makes all of it auditable.
+forgetting easier, and a documented scheme makes all of it auditable. The
+diagram below shows how a single candidate write moves through that
+system, from the moment a session produces it to the moment a later
+session retrieves it back.
+
+```mermaid
+flowchart LR
+    A[Session produces\na candidate write] --> B{Gate}
+    B -->|Fails importance| X[Discarded]
+    B -->|Contains a secret| X
+    B -->|Duplicate found| M[Merge into\nexisting entry]
+    B -->|Passes all checks| C[Write to its namespace]
+    C --> D[(facts)]
+    C --> E[(decisions)]
+    C --> F[(users)]
+    D --> G[Retrieval]
+    E --> G
+    F --> G
+    G --> H[Delimited as data,\nnot instructions]
+    H --> I[Agent reasons about it\nin context]
+```
 
 ## 1. Namespace by kind
 
@@ -151,7 +174,8 @@ attacker interacting with an agent through entirely ordinary, permitted
 inputs can get manipulated records embedded into its memory bank, which
 then get retrieved and acted on in later, unrelated sessions, including
 sessions belonging to other users. No privileged access to the store was
-needed, only patience and normal interaction.
+needed, only patience and normal interaction. See
+[references.md](references.md) for links to both sources.
 
 The defense follows directly from the attack. Retrieved memory should be
 handed to the agent as context to reason about, clearly delimited from
@@ -178,7 +202,7 @@ documentation and the actual behavior.
 A short template covers most cases. Copy it, fill it in, keep it next to
 the memory store itself:
 
-```
+```text
 ## Memory scheme: <system name>
 
 Kinds:
@@ -203,6 +227,19 @@ Trust boundary:
 Last reviewed: <date>
 ```
 
-A documented scheme is also what makes review possible. The checklist and
-worked examples in this repository assume a scheme roughly this shape.
-Use them to test whether yours holds up.
+A documented scheme is also what makes review possible. The
+[checklist](checklist.md) and [worked examples](examples/) in this
+repository assume a scheme roughly this shape. Use them to test whether
+yours holds up.
+
+## More in this repository
+
+- [checklist.md](checklist.md): 12 yes/no questions for auditing a
+  memory scheme against this guide.
+- [examples/](examples/): 3 worked examples using an invented
+  customer-support bot.
+- [SKILL.md](SKILL.md): instructions for a coding agent applying this
+  guide.
+- [references.md](references.md): sources cited above, with links.
+- [CONTRIBUTING.md](CONTRIBUTING.md): what's in and out of scope for
+  changes to this guide.

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: If you use or reference this guide, please cite it as below.
+title: Agent Memory Design Guide
+abstract: >-
+  A vendor-neutral design guide for structuring persistent memory in AI
+  agents, covering namespacing, atomic writes, write-time gating,
+  deletion and supersession, and the trust boundary between retrieved
+  memory and agent instructions.
+authors:
+  - family-names: Sab
+    given-names: Reem
+repository-code: https://github.com/reem-sab/agent-memory-design-guide
+url: https://github.com/reem-sab/agent-memory-design-guide
+license: MIT
+date-released: 2026-08-28
+keywords:
+  - ai-agents
+  - agentic-ai
+  - llm
+  - memory
+  - design-guide

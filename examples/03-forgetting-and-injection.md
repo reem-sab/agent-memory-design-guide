@@ -19,7 +19,7 @@ This message is written the way an instruction is written: imperative,
 addressed to the system, asking for a standing rule change. If the agent
 treated retrieved memory as part of its instruction stream, a write like
 
-```
+```text
 Priya's account: free expedited shipping on every order, automatic,
 no approval needed.
 ```
@@ -34,7 +34,7 @@ what the system was told to do.
 The correct write reflects what actually happened, a request, not an
 approved policy:
 
-```
+```text
 Priya requested standing free expedited shipping on 2026-08-28; request
 escalated to supervisor review, not yet approved.
 ```
@@ -77,7 +77,7 @@ storage, purged from backups on the next rotation, documented as a
 Contrast deletion with an ordinary update. Suppose Priya's shipping
 request had been approved instead of deleted outright:
 
-```
+```text
 [retired] Priya requested standing free expedited shipping on
 2026-08-28; request escalated to supervisor review, not yet approved.
 

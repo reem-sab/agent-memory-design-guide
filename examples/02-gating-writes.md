@@ -33,8 +33,7 @@ gate from Section 3 of the guide before committing anything.
 - Outcome: rejected. Nothing about this exchange's card number is stored.
   If a record of the payment issue on order #51190 is useful, store that
   fact without the number:
-  `Order #51190 had a declined payment on 2026-08-28, resolved by
-  directing the customer to re-enter payment through checkout.`
+  `Order #51190 had a declined payment on 2026-08-28, resolved by directing the customer to re-enter payment through checkout.`
 
 ## Candidate 2: preferred contact method
 

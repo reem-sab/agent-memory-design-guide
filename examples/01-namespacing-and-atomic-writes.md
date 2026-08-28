@@ -34,19 +34,23 @@ deleted independently later.
 
 3 atomic writes, each to the namespace it belongs in:
 
-**users**
-```
+The **users** namespace gets Dana's timezone:
+
+```text
 Dana Okafor (account #48213-holder) is in the Pacific timezone.
 ```
 
-**decisions**
-```
+The **decisions** namespace gets the shipping upgrade and why:
+
+```text
 Order #48213 was upgraded to expedited shipping at no charge on
 2026-08-28, because the original delivery estimate was missed by 3 days.
 ```
 
-**facts** (only if this reveals something general, not case-specific)
-```
+The **facts** namespace gets the general policy, only if it reveals
+something beyond this one case:
+
+```text
 Orders that miss their delivery estimate by more than 48 hours are
 eligible for a free expedited-shipping upgrade per current support
 policy.
