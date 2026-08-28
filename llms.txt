@@ -1,46 +1,46 @@
 # Agent Memory Design Guide
 
 > A short, vendor-neutral guide to structuring persistent memory for AI
-> agents: what to write, how to organize it, when to delete it, and how to
-> keep retrieved memory from being treated as instructions. Applies to any
-> storage backend and any agent framework.
+> agents: what to write, how to organize it, when to delete it, and how
+> to keep retrieved memory from being treated as instructions. Applies to
+> any storage backend and any agent framework.
 
-This repository is a design guide, not a library or SDK — there is no code
+This repository is a design guide, not a library or SDK; there's no code
 to install. It's meant to be read by both humans and coding agents, and
 applied when designing or reviewing an agent's memory system.
 
 ## Core guide
 
-- [README.md](README.md): The guide itself. Six practices — namespace by
+- [README.md](README.md): The guide itself. Six practices: namespace by
   kind, one fact per write, gate every write, plan for forgetting, treat
-  memory as data not instructions, and document your scheme — each with a
+  memory as data not instructions, and document your scheme, each with a
   short rationale. Ends with a copy-paste template for documenting a
   memory scheme.
 
 ## Review
 
-- [checklist.md](checklist.md): Twelve yes/no questions for auditing an
-  existing memory system against the guide, two per section of the README.
+- [checklist.md](checklist.md): 12 yes/no questions for auditing an
+  existing memory system against the guide, 2 per section of the README.
 
 ## Examples
 
 - [examples/01-namespacing-and-atomic-writes.md](examples/01-namespacing-and-atomic-writes.md):
   A worked customer-support session showing the difference between one
-  bundled summary write and three correctly namespaced atomic writes.
-- [examples/02-gating-writes.md](examples/02-gating-writes.md): Three
+  bundled summary write and 3 correctly namespaced atomic writes.
+- [examples/02-gating-writes.md](examples/02-gating-writes.md): 3
   candidate writes from one session evaluated against the importance,
-  dedup, and secret checks — including a payment credential that must be
+  dedup, and secret checks, including a payment credential that must be
   rejected outright.
 - [examples/03-forgetting-and-injection.md](examples/03-forgetting-and-injection.md):
-  A memory-injection attempt via an ordinary chat message, a right-to-be-
-  forgotten deletion request, and a supersession example showing how an
-  updated fact should replace an old one.
+  A memory-injection attempt through an ordinary chat message, a
+  right-to-be-forgotten deletion request, and a supersession example
+  showing how an updated fact should replace an old one.
 
 ## Applying this guide
 
 - [SKILL.md](SKILL.md): Instructions for a coding agent on how to apply
-  this guide when designing or reviewing a memory system — read this if
-  you are an agent being asked to do that work, not a human reading the
+  this guide when designing or reviewing a memory system. Read this if
+  you're an agent being asked to do that work, not a human reading the
   guide directly.
 
 ## License
